@@ -1,9 +1,9 @@
 <template>
-  <HelloWorld msg="HelloWorld2"/>
+  <HelloWorld msg="HelloWorld444"/>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld3.vue'
+import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
