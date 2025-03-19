@@ -10,4 +10,4 @@ command = "npm run build"  # 构建命令，如果是 Vue 或其他前端框架�
 upload = { dir = "dist", format = "modules" }
 
 [env.production]
-main = "function/helloworld.js"  # 指定 Worker 脚本的入口
+main = "functions/helloworld.js"  # 指定 Worker 脚本的入口
