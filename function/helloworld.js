@@ -1,4 +1,4 @@
-export function onRequest(context) {
+export function onRequest() {
     return handleRequest()
 }
 
