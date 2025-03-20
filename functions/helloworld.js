@@ -53,7 +53,7 @@ async function handleRequest(context) {
                 model: "order"
             })
         });
-        console.log(context.params)
+
 
         // 检查HTTP状态码
         if (!response.ok) {
@@ -65,7 +65,7 @@ async function handleRequest(context) {
         console.log('Success:', data);
 
         // 返回一个 Cloudflare Worker 响应，包含飞书的响应内容
-        return new Response(JSON.stringify({ success: true, message: 'Data sent to Feishu', feishuResponse: data }), {
+        return new Response(JSON.stringify({ message: JSON.stringify(context.params) }), {
             headers: { 'Content-Type': 'application/json' },
         });
 
