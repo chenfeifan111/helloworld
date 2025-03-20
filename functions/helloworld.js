@@ -103,11 +103,10 @@ export async function onRequest(context) {
     }else if (context.request.method === "GET") {
         const url = new URL(context.request.url);  // 获取请求 URL
         const name = url.searchParams.get('name');  // 提取查询参数 `name`
-        const age = url.searchParams.get('age');  // 提取查询参数 `age`
 
         // 返回包含 user 参数的响应
-        if (name&&age) {
-            return new Response(name,age);
+        if (name) {
+            return new Response(name,);
         } else {
             return new Response("User parameter is missing", { status: 400 });
         }
