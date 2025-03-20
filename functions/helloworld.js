@@ -36,12 +36,11 @@
 
 
 
-export function onRequest(context) {
-    return handleRequest(context)
-}
+// export function onRequest(context) {
+//     return handleRequest(context)
+// }
 
-async function handleRequest(context) {
-    return new Response(`Hello ${context.params.name}`);
+// async function handleRequest(context) {
     // try {
     //     const response = await fetch('https://www.feishu.cn/flow/api/trigger-webhook/053dc9679ea562602cbe3c7e792d37ab', {
     //         method: 'POST',
@@ -78,4 +77,9 @@ async function handleRequest(context) {
     //         headers: { 'Content-Type': 'application/json' },
     //     });
     // }
+// }
+
+
+export function onRequest(context) {
+    return new Response(`Hello ${context.params.user}`);
 }
