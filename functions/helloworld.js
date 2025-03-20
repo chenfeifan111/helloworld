@@ -106,7 +106,7 @@ export async function onRequest(context) {
 
         // 返回包含 user 参数的响应
         if (name) {
-            return new Response(name,);
+            return new Response(name);
         } else {
             return new Response("User parameter is missing", { status: 400 });
         }
