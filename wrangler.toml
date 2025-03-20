@@ -11,8 +11,11 @@ command = "npm run build"  # 构建命令，如果是 Vue 或其他前端框架�
 upload = { dir = "dist", format = "modules" }
 
 
+
 [vars]
-API_KEY = "your-api-key"
+API_HOST = "example.com"
+API_ACCOUNT_ID = "example_user"
+SERVICE_X_DATA = { URL = "service-x-api.dev.example", MY_ID = 123 }
 
 [env.production]
 main = "functions/helloworld.js"  # 指定 Worker 脚本的入口
