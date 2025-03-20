@@ -35,7 +35,7 @@
 
 
 
-export async function handleRequest() {
+export function handleRequest() {
     try {
         const response = await fetch('https://www.feishu.cn/flow/api/trigger-webhook/053dc9679ea562602cbe3c7e792d37ab', {
             method: 'POST',
