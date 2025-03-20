@@ -12,14 +12,10 @@ upload = { dir = "dist", format = "modules" }
 
 
 [vars]
-API_KEY = "your-api-key"  # 静态变量
+API_KEY = "your-api-key"
 
 [env.production]
 main = "functions/helloworld.js"  # 指定 Worker 脚本的入口
-
-
-
-
 
 # 依赖项配置
 [build.upload]

@@ -66,19 +66,25 @@
 
 
 
-/**
- * 示例3 读取kv
- */
-export async function onRequest(context) {
-    if (context.request.method === "GET") {
-        const url = new URL(context.request.url);  // 获取请求 URL
-        const name = url.searchParams.get('name');  // 提取查询参数 `name`
-        console.log(name)
-        const apiKey = context.env.API_KEY;
-        return new Response(apiKey);
-    }
-}
+// /**
+//  * 示例3 读取kv
+//  */
+// export async function onRequest(context) {
+//     if (context.request.method === "GET") {
+//         const url = new URL(context.request.url);  // 获取请求 URL
+//         const name = url.searchParams.get('name');  // 提取查询参数 `name`
+//         console.log(name)
+//         const apiKey = context.env.API_KEY;
+//         return new Response(apiKey);
+//     }
+// }
 
+export default {
+    async fetch(request, env) { // `env` 参数包含了所有环境变量
+        const apiKey = env.API_KEY; // 直接通过 env.API_KEY 读取
+        return new Response(`API Key is: ${apiKey}`);
+    }
+};
 
 
 /**
