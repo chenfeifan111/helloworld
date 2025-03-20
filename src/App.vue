@@ -1,5 +1,5 @@
 <template>
-  <HelloWorld msg="HelloWorld666"/>
+  <HelloWorld msg="HelloWorld777"/>
 </template>
 
 <script>
