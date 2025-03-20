@@ -41,7 +41,7 @@ export function onRequest(context) {
 }
 
 async function handleRequest(context) {
-    return new Response({message:JSON.stringify(context)});
+    return new Response(`Hello ${context.params.name}`);
     // try {
     //     const response = await fetch('https://www.feishu.cn/flow/api/trigger-webhook/053dc9679ea562602cbe3c7e792d37ab', {
     //         method: 'POST',
