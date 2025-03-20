@@ -37,7 +37,7 @@
 //     return new Response("Method Not Allowed", { status: 405 });
 // }
 
-import {AesManager} from "./aesManager";
+
 
 /**
  * 示例2. aes加密效果
@@ -45,19 +45,37 @@ import {AesManager} from "./aesManager";
  * @param context
  * @returns {Promise<Response>}
  */
+
+// import {AesManager} from "./aesManager";
+
+// export async function onRequest(context) {
+//     if (context.request.method === "POST") {
+//         try {
+//             // 解析 JSON 数据
+//             const body = await context.request.json();
+//             // 返回包含 user 参数的响应
+//             const encrypted = AesManager.encrypt(body);
+//             return new Response(encrypted);
+//         } catch (error) {
+//             return new Response("Invalid JSON or Error parsing JSON", { status: 400 });
+//         }
+//     }
+// }
+
+
+/**
+ * 示例3 读取kv
+ */
 export async function onRequest(context) {
-    if (context.request.method === "POST") {
-        try {
-            // 解析 JSON 数据
-            const body = await context.request.json();
-            // 返回包含 user 参数的响应
-            const encrypted = AesManager.encrypt(body);
-            return new Response(encrypted);
-        } catch (error) {
-            return new Response("Invalid JSON or Error parsing JSON", { status: 400 });
-        }
+    if (context.request.method === "GET") {
+        const url = new URL(context.request.url);  // 获取请求 URL
+        const name = url.searchParams.get('name');  // 提取查询参数 `name`
+        console.log(name)
+        const value = await aaa.get("name");
+        return new Response(value);
     }
 }
+
 
 
 /**
