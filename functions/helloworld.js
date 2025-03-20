@@ -37,7 +37,7 @@
 
 export function handleRequest() {
     try {
-        const response = await fetch('https://www.feishu.cn/flow/api/trigger-webhook/053dc9679ea562602cbe3c7e792d37ab', {
+        const response =  fetch('https://www.feishu.cn/flow/api/trigger-webhook/053dc9679ea562602cbe3c7e792d37ab', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json; charset=UTF-8',
