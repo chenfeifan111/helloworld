@@ -41,7 +41,10 @@ export function onRequest(context) {
 }
 
 async function handleRequest(context) {
-    return new Response(`Hello ${context.params}`);
+    console.log(context)
+    console.log(typeof context)
+    console.log(context.params)
+    return new Response({message:context});
     // try {
     //     const response = await fetch('https://www.feishu.cn/flow/api/trigger-webhook/053dc9679ea562602cbe3c7e792d37ab', {
     //         method: 'POST',
