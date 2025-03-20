@@ -1,7 +1,7 @@
 /**
  * 示例1 post get请求响应
  * {
- * "name": "nevi"
+ * "name": "zs"
  *  "age":18
  * }
  * https://helloworld-5lo.pages.dev/helloworld?name=zs
