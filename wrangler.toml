@@ -10,9 +10,11 @@ node_compat = true              # 启用Node.js兼容模式
 command = "npm run build"  # 构建命令，如果是 Vue 或其他前端框架，通常是 `npm run build`
 upload = { dir = "dist", format = "modules" }
 
-[[kv_namespaces]]
-binding = "aaa"  # 在 Worker 中使用的绑定名称
-id = "be8bf22f8411405198e2239ee016571e"  # 你在 Cloudflare 中创建的 KV 命名空间 ID
+
+
+kv_namespaces = [
+    { binding = "aaa", id = "be8bf22f8411405198e2239ee016571e" }
+]
 
 
 [env.production]
