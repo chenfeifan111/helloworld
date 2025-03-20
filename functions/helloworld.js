@@ -80,8 +80,21 @@
 // }
 
 
-export function onRequest(context) {
-    // 获取路径参数 `user`
-    const user = context.params.user;
-    return new Response(`Hello ${user}`);
+export async function onRequest(context) {
+    // 确保处理 POST 请求
+    if (context.request.method === "POST") {
+        try {
+            // 解析 JSON 数据
+            const body = await context.request.json();
+            const user = body.user;  // 获取 JSON 中的 user 字段
+
+            // 返回包含 user 参数的响应
+            return new Response(`Hello ${user}`);
+        } catch (error) {
+            return new Response("Invalid JSON or Error parsing JSON", { status: 400 });
+        }
+    }
+
+    // 如果不是 POST 请求，返回方法不允许的响应
+    return new Response("Method Not Allowed", { status: 405 });
 }
