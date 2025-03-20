@@ -11,10 +11,12 @@ command = "npm run build"  # 构建命令，如果是 Vue 或其他前端框架�
 upload = { dir = "dist", format = "modules" }
 
 
+[vars]
+API_KEY = "your-api-key"  # 静态变量
 
 [env.production]
 main = "functions/helloworld.js"  # 指定 Worker 脚本的入口
-vars ={ MY_SECRET = "your-secret-value" }
+
 
 
 
