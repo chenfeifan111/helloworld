@@ -100,6 +100,17 @@ export async function onRequest(context) {
         } catch (error) {
             return new Response("Invalid JSON or Error parsing JSON", { status: 400 });
         }
+    }else if (context.request.method === "GET") {
+        const url = new URL(context.request.url);  // 获取请求 URL
+        const name = url.searchParams.get('name');  // 提取查询参数 `name`
+        const age = url.searchParams.get('age');  // 提取查询参数 `age`
+
+        // 返回包含 user 参数的响应
+        if (name&&age) {
+            return new Response(name,age);
+        } else {
+            return new Response("User parameter is missing", { status: 400 });
+        }
     }
 
     // 如果不是 POST 请求，返回方法不允许的响应
