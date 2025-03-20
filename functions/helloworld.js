@@ -64,7 +64,7 @@
 
 
 
-import {env} from "eslint-plugin-vue/lib/configs/base";
+
 
 /**
  * 示例3 读取kv
