@@ -40,7 +40,7 @@
 import {AesManager} from "./aesManager";
 
 /**
- * aes加密效果
+ * 示例2. aes加密效果
  * {"sCustomerId":"","sCustomerName":""}
  * @param context
  * @returns {Promise<Response>}
@@ -60,7 +60,9 @@ export async function onRequest(context) {
 }
 
 
-
+/**
+ * 原来的飞书测试
+ */
 // export function onRequest(context) {
 //     return handleRequest(context)
 // }
