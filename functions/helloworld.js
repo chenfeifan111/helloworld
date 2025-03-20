@@ -74,8 +74,8 @@ export async function onRequest(context) {
         const url = new URL(context.request.url);  // 获取请求 URL
         const name = url.searchParams.get('name');  // 提取查询参数 `name`
         console.log(name)
-        const value = await env.aaa.get("dev");
-        return new Response(value);
+        const mySecret = context.env.MY_SECRET;
+        return new Response(mySecret);
     }
 }
 

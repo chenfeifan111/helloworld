@@ -12,13 +12,12 @@ upload = { dir = "dist", format = "modules" }
 
 
 
-kv_namespaces = [
-    { binding = "aaa", id = "be8bf22f8411405198e2239ee016571e" }
-]
-
-
 [env.production]
 main = "functions/helloworld.js"  # 指定 Worker 脚本的入口
+vars ={ MY_SECRET = "your-secret-value" }
+
+
+
 
 # 依赖项配置
 [build.upload]
