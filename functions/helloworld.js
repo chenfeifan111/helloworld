@@ -81,5 +81,7 @@
 
 
 export function onRequest(context) {
-    return new Response(`Hello ${context.params.user}`);
+    // 获取路径参数 `user`
+    const user = context.params.user;
+    return new Response(`Hello ${user}`);
 }
