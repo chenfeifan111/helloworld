@@ -79,17 +79,24 @@
     // }
 // }
 
-
+/**
+ * {
+ * "name": "nevi"
+ *  "age":18
+ * }
+ * @param context
+ * @returns {Promise<Response>}
+ */
 export async function onRequest(context) {
     // 确保处理 POST 请求
     if (context.request.method === "POST") {
         try {
             // 解析 JSON 数据
             const body = await context.request.json();
-            const user = body.user;  // 获取 JSON 中的 user 字段
+            // const name = body.name;  // 获取 JSON 中的 user 字段
 
             // 返回包含 user 参数的响应
-            return new Response(`Hello ${user}`);
+            return new Response(`Hello ${JSON.stringify(body)}`);
         } catch (error) {
             return new Response("Invalid JSON or Error parsing JSON", { status: 400 });
         }
