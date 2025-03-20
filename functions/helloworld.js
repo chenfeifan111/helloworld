@@ -55,7 +55,7 @@ export function handleRequest() {
         }
 
         // 解析响应数据
-        const data = await response.json();
+        const data =  response.json();
         console.log('Success:', data);
         return data;
 
