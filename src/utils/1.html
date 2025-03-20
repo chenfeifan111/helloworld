@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AES Encryption/Decryption</title>
+    <!-- 引入 CryptoJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <!-- 引入 Base64 -->
+    <script src="https://cdn.jsdelivr.net/npm/js-base64@3.7.5/base64.min.js"></script>
+</head>
+<body>
+<script>
+    // 配置参数
+    const CRYPTOJSKEY = "4I0wrCt6pTJXjdLm";
+    const iv = "5481649756531687";
+
+    const AesManager = {
+        /**
+         * @description 加密函数
+         * @param {any} data 加密明文
+         * @returns {string} 加密结果
+         */
+        encrypt: function(data) {
+            const json_str = JSON.stringify(data);
+            const plaintText = Base64.encode(json_str);
+            const options = {
+                iv: CryptoJS.enc.Utf8.parse(iv),
+                mode: CryptoJS.mode.CBC,
+                padding: CryptoJS.pad.Pkcs7
+            };
+            const key = CryptoJS.enc.Utf8.parse(CRYPTOJSKEY);
+            const encryptedData = CryptoJS.AES.encrypt(plaintText, key, options);
+            return encryptedData.toString();
+        },
+
+        /**
+         * @description 解密函数
+         * @param {string} encryptedBase64Str 密文
+         * @returns {any} 解密结果
+         */
+        decrypt: function(encryptedBase64Str) {
+            const options = {
+                iv: CryptoJS.enc.Utf8.parse(iv),
+                mode: CryptoJS.mode.CBC,
+                padding: CryptoJS.pad.Pkcs7
+            };
+            const key = CryptoJS.enc.Utf8.parse(CRYPTOJSKEY);
+            const decryptedData = CryptoJS.AES.decrypt(encryptedBase64Str, key, options);
+            const decryptedStr = decryptedData.toString(CryptoJS.enc.Utf8);
+            const json_str = Base64.decode(decryptedStr);
+            return JSON.parse(json_str);
+        }
+    };
+
+    /****************** 测试用例 ​******************/
+// 测试加密
+//     const originalData = { name: "Alice", age: 30 };
+    const originalData = {"sCustomerId":"","sCustomerName":""};
+    const encrypted = AesManager.encrypt(originalData);
+    console.log("Encrypted:", encrypted);
+
+    // 测试解密
+    const decrypted = AesManager.decrypt(encrypted);
+    console.log("Decrypted:", decrypted);
+
+    // 验证结果
+    console.log("Data Match:", JSON.stringify(originalData) === JSON.stringify(decrypted));
+</script>
+</body>
+</html>

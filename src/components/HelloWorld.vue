@@ -4,12 +4,10 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
-  }
-}
+<script setup>
+import { defineProps } from 'vue'
+defineProps({
+  msg: String
+});
 </script>
 
