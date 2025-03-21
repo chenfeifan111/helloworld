@@ -1,17 +1,18 @@
-#name = "helloworld-worker"
-#type = "javascript"
+name = "helloworld-worker"
+type = "javascript"
+compatibility_date = "2025-03-21"
 #
 ## 指定 Worker 入口
-#route = "/helloworld"  # 你希望这个 Worker 处理的路径
-#workers_dev = true      # 开启本地开发模式（可以在本地测试）
-#node_compat = true              # 启用Node.js兼容模式
-#
+route = "/helloworld3"  # 你希望这个 Worker 处理的路径
+workers_dev = true      # 开启本地开发模式（可以在本地测试）
+node_compat = true              # 启用Node.js兼容模式
+
 #[build]
 #command = "npm run build"  # 构建命令，如果是 Vue 或其他前端框架，通常是 `npm run build`
 #upload = { dir = "dist", format = "modules" }
 #
-[env.production]
-main = "functions/helloworld3.js"  # 指定 Worker 脚本的入口
+#[env.production]
+#main = "functions/helloworld3.js"  # 指定 Worker 脚本的入口
 #
 ## 依赖项配置
 #[build.upload]
