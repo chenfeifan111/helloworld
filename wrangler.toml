@@ -19,3 +19,6 @@
 #module_rules = [
 #    { type = "ESModule", globs = ["**/*.js"] }
 #]
+
+
+assets = { bucket = "./dist" }
