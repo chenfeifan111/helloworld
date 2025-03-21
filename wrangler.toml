@@ -10,8 +10,8 @@
 #command = "npm run build"  # 构建命令，如果是 Vue 或其他前端框架，通常是 `npm run build`
 #upload = { dir = "dist", format = "modules" }
 #
-#[env.production]
-#main = "functions/helloworld.js"  # 指定 Worker 脚本的入口
+[env.production]
+main = "functions/helloworld3.js"  # 指定 Worker 脚本的入口
 #
 ## 依赖项配置
 #[build.upload]
