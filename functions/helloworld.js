@@ -108,18 +108,20 @@ addEventListener('fetch', event => {
 })
 
 async function onRequest(request, env) {
-    const url = new URL(request.url);
-    switch (url.pathname) {
-        case '/message':
-            // 返回环境变量 MY_VARIABLE 的值
-            return new Response(env.main);
-        case '/random':
-            // 返回一个随机的 UUID
-            return new Response(crypto.randomUUID());
-        default:
-            // 如果路径不匹配，返回 404
-            return new Response('Not Found', { status: 404 });
-    }
+    // const url = new URL(request.url);
+    // switch (url.pathname) {
+    //     case '/message':
+    //         // 返回环境变量 MY_VARIABLE 的值
+    //         return new Response(env.main);
+    //     case '/random':
+    //         // 返回一个随机的 UUID
+    //         return new Response(crypto.randomUUID());
+    //     default:
+    //         // 如果路径不匹配，返回 404
+    //         return new Response('Not Found', { status: 404 });
+    // }
+    console.log(request,env)
+    return new Response("111")
 }
 
 
