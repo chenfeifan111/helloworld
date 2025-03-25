@@ -103,9 +103,9 @@
 //
 
 
-addEventListener('fetch', event => {
-    event.respondWith(onRequest(event.request, event.env));
-})
+// addEventListener('fetch', event => {
+//     event.respondWith(onRequest(event.request, event.env));
+// })
 
 export async function onRequest(request) {
     // const url = new URL(request.url);
