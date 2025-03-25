@@ -103,26 +103,27 @@
 //
 
 
-// addEventListener('fetch', event => {
-//     event.respondWith(onRequest(event.request, event.env));
-// })
+addEventListener('fetch', event => {
+    event.respondWith(onRequest(event.request, event.env));
+})
 
-export async function onRequest(request) {
-    // const url = new URL(request.url);
-    // switch (url.pathname) {
-    //     case '/message':
-    //         // 返回环境变量 MY_VARIABLE 的值
-    //         return new Response(env.main);
-    //     case '/random':
-    //         // 返回一个随机的 UUID
-    //         return new Response(crypto.randomUUID());
-    //     default:
-    //         // 如果路径不匹配，返回 404
-    //         return new Response('Not Found', { status: 404 });
-    // }
+export async function onRequest(request,env) {
     console.log(request)
-    return new Response("111"+request.env.main)
+    return new Response("111"+env.main)
 }
+
+// const url = new URL(request.url);
+// switch (url.pathname) {
+//     case '/message':
+//         // 返回环境变量 MY_VARIABLE 的值
+//         return new Response(env.main);
+//     case '/random':
+//         // 返回一个随机的 UUID
+//         return new Response(crypto.randomUUID());
+//     default:
+//         // 如果路径不匹配，返回 404
+//         return new Response('Not Found', { status: 404 });
+// }
 
 
 
