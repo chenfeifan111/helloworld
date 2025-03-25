@@ -121,7 +121,7 @@ export async function onRequest(request) {
     //         return new Response('Not Found', { status: 404 });
     // }
     console.log(request)
-    return new Response("111")
+    return new Response(request.env.main)
 }
 
 
