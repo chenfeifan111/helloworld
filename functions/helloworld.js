@@ -103,13 +103,11 @@
 //
 
 
-addEventListener('fetch', event => {
-    event.respondWith(onRequest(event.request, event.env));
-})
+
 
 export async function onRequest(request,env) {
     console.log(request)
-    return new Response("111"+env.main)
+    return new Response(env.main)
 }
 
 // const url = new URL(request.url);
