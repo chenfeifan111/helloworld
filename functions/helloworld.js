@@ -4,7 +4,7 @@
  * "name": "zs"
  *  "age":18
  * }
- * https://helloworld-5lo.pages.dev/helloworld?name=zs
+ * https://helloworld-5lo.pages.dev/helloworldc
  * @param context
  * @returns {Promise<Response>}
  */
@@ -107,7 +107,7 @@ addEventListener('fetch', event => {
     event.respondWith(onRequest(event.request, event.env));
 })
 
-export async function onRequest(request, env) {
+export async function onRequest(request) {
     // const url = new URL(request.url);
     // switch (url.pathname) {
     //     case '/message':
@@ -120,7 +120,7 @@ export async function onRequest(request, env) {
     //         // 如果路径不匹配，返回 404
     //         return new Response('Not Found', { status: 404 });
     // }
-    console.log(request,env)
+    console.log(request)
     return new Response("111")
 }
 
