@@ -107,7 +107,7 @@ addEventListener('fetch', event => {
     event.respondWith(onRequest(event.request, event.env));
 })
 
-async function onRequest(request, env) {
+export async function onRequest(request, env) {
     // const url = new URL(request.url);
     // switch (url.pathname) {
     //     case '/message':
