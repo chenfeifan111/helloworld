@@ -105,9 +105,9 @@
 
 
 
-export async function onRequest(request,env) {
-    console.log(request)
-    return new Response(env.main)
+export async function onRequest(context) {
+    console.log('ENV:', JSON.stringify(context.env));
+    return new Response(context.env.main);
 }
 
 
