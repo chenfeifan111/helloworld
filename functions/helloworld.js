@@ -105,10 +105,18 @@
 
 
 
-export async function onRequest(request,env) {
-    console.log(request)
-    return new Response(env.main)
-}
+// export async function onRequest(request,env) {
+//     console.log(request)
+//     return new Response(env.main)
+// }
+
+export default {
+    async fetch(request, env) {
+        console.log(request);
+        // 确保env中main变量已正确绑定
+        return new Response(env.main);
+    }
+};
 
 // const url = new URL(request.url);
 // switch (url.pathname) {
