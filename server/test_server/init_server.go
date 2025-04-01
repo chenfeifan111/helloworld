@@ -21,7 +21,11 @@ func InitServer() {
 			c.JSON(404, err.Error())
 			return
 		}
-		c.JSON(200, user)
+		//c.JSON(200, user)
+		c.JSON(200, gin.H{
+			"name": user.Name,
+			"age":  user.Age,
+		})
 	})
 	err := r.Run(":" + config.Config.Http.Port)
 	if err != nil {
