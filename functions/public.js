@@ -61,11 +61,11 @@
 //     }
 // }
 
-
+import {AesManager} from "./aesManager";
 
 const map = new Map()
 map.set("dev", "http://localhost:8899")//换成本地后端接口
-map.set("prod", "http://101.126.138.169:8899")
+map.set("prod", "https://prepublish-api.tongitspinoy.com")//注意一定要使用https
 
 //本地
 export default {
@@ -100,15 +100,16 @@ async function merge(request) {
             return new Response(JSON.stringify({err: "Missing environment:" + body.env}));
         }
         const url = baseUrl + body.path//请求路径
-        // const encrypted = AesManager.encrypt(reqData);
-        // const req = {postData: encrypted}
-        const req = body.data//实际要请求的数据
+        const reqData = body.data//实际要请求的数据
+        const encrypted = AesManager.encrypt(reqData);
+        const req = {postData: encrypted}
+        // const req = body.data//实际要请求的数据
         // if (1==1){
         //     return new Response(JSON.stringify(req));//测试加密结果
         //     return withCors(new Response(JSON.stringify({env:body.env})));
         // }
         try {
-            let response = await fetch("https://117.72.67.53:4000/post", {
+            let response = await fetch("https://prepublish-api.tongitspinoy.com/web_client/shareMgr/checkCustomerLink", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json; charset=UTF-8',
