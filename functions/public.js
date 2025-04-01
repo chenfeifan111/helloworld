@@ -108,14 +108,13 @@ async function merge(request) {
         //     return withCors(new Response(JSON.stringify({env:body.env})));
         // }
         try {
-            const response = await fetch(url, {
+            return await fetch(url, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json; charset=UTF-8',
                 },
                 body: JSON.stringify({name: "zs", age: 18})
             });
-            return withCors(response);
             // 如果返回的响应是 JSON 格式
             // if (response.ok) {
             //     const data = await response.json();  // 获取响应的 JSON 数据
@@ -128,18 +127,18 @@ async function merge(request) {
             // }
         }
         catch (error) {
-            return withCors(new Response(JSON.stringify({err: "Request failed", message: error.message}), {status: 500}));
+            return new Response(JSON.stringify({err: "Request failed", message: error.message}), {status: 500});
         }
     }
 }
 
 
-function withCors(response) {
-    response.headers.set('Access-Control-Allow-Origin', '*');
-    response.headers.set('Access-Control-Allow-Methods', 'POST, OPTIONS');
-    response.headers.set('Access-Control-Allow-Headers', 'Content-Type');
-    return response;
-}
+// function withCors(response) {
+//     response.headers.set('Access-Control-Allow-Origin', '*');
+//     response.headers.set('Access-Control-Allow-Methods', 'POST, OPTIONS');
+//     response.headers.set('Access-Control-Allow-Headers', 'Content-Type');
+//     return response;
+// }
 
 
 
