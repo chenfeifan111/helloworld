@@ -107,30 +107,30 @@ async function merge(request) {
         const req = {postData: encrypted}
         // if (1==1){
         //     return new Response(JSON.stringify(req));//测试加密结果
+        // return withCors(new Response(JSON.stringify({env:body.env})));
         // }
-        return withCors(new Response(JSON.stringify({env:body.env})));
-        // try {
-        //     const response = await fetch(url, {
-        //         method: 'POST',
-        //         headers: {
-        //             'Content-Type': 'application/json; charset=UTF-8',
-        //         },
-        //         body: JSON.stringify(req)
-        //     });
-        //     // 如果返回的响应是 JSON 格式
-        //     if (response.ok) {
-        //         const data = await response.json();  // 获取响应的 JSON 数据
-        //         return withCors(new Response(JSON.stringify(data)));
-        //     } else {
-        //         return withCors(new Response(JSON.stringify({
-        //             err: "Server returned an error",
-        //             status: response.status
-        //         }), {status: response.status}));
-        //     }
-        // }
-        // catch (error) {
-        //     return withCors(new Response(JSON.stringify({err: "Request failed", message: error.message}), {status: 500}));
-        // }
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json; charset=UTF-8',
+                },
+                body: JSON.stringify(req)
+            });
+            // 如果返回的响应是 JSON 格式
+            if (response.ok) {
+                const data = await response.json();  // 获取响应的 JSON 数据
+                return withCors(new Response(JSON.stringify(data)));
+            } else {
+                return withCors(new Response(JSON.stringify({
+                    err: "Server returned an error",
+                    status: response.status
+                }), {status: response.status}));
+            }
+        }
+        catch (error) {
+            return withCors(new Response(JSON.stringify({err: "Request failed", message: error.message}), {status: 500}));
+        }
     }
 }
 
