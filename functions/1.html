@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script>
+    function withCors(response) {
+        response.headers.set('Access-Control-Allow-Origin', '*');
+        response.headers.set('Access-Control-Allow-Methods', 'POST, OPTIONS');
+        response.headers.set('Access-Control-Allow-Headers', 'Content-Type');
+        return response;
+    }
+
+    async function test() {
+        const response = await fetch("http://101.126.138.169:8899/post", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json; charset=UTF-8',
+            },
+            body: JSON.stringify({name: "zs", age: 18})
+        });
+        // 如果返回的响应是 JSON 格式
+        if (response.ok) {
+            const data = await response.json();  // 获取响应的 JSON 数据
+            return withCors(new Response(JSON.stringify(data)));
+        } else {
+            return withCors(new Response(JSON.stringify({
+                err: "Server returned an error",
+                status: response.status
+            }), {status: response.status}));
+        }
+    }
+</script>
+<body>
+666
+<button onclick="test()">aaa</button>
+</body>
+</html>
