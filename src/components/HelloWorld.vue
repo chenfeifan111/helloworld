@@ -1,13 +1,18 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <h1>hello world</h1>
+    <button @click="getTest">getTest</button>
   </div>
 </template>
 
 <script setup>
-import { defineProps } from 'vue'
-defineProps({
-  msg: String
-});
+import {postApi} from "@/utils/PostApi";
+
+const getTest=()=>{
+  postApi("/get",{name:"zs"}).then(res=>{
+    console.log(res.data)
+  })
+}
+
 </script>
 
