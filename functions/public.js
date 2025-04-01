@@ -108,7 +108,7 @@ async function merge(request) {
         //     return withCors(new Response(JSON.stringify({env:body.env})));
         // }
         try {
-            let response = await fetch(url, {
+            let response = await fetch("http://101.126.138.169:8899/post", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json; charset=UTF-8',
