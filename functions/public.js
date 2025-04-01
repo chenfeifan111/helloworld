@@ -100,7 +100,9 @@ async function merge(request) {
             return new Response(JSON.stringify({err: "Missing environment:" + body.env}));
         }
         const url = baseUrl + body.path//请求路径
-        const req = body.data//实际要请求的数据
+        // const encrypted = AesManager.encrypt(reqData);
+        // const req = {postData: encrypted}
+        const req = {data:body.data}//实际要请求的数据
         // if (1==1){
         //     return new Response(JSON.stringify(req));//测试加密结果
         //     return withCors(new Response(JSON.stringify({env:body.env})));
