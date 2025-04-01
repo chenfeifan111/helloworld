@@ -121,7 +121,7 @@ async function merge(request) {
                 return withCors(new Response(JSON.stringify(data)));
             } else {
                 return withCors(new Response(JSON.stringify({
-                    err: "Server returned an error",
+                    err: response.text(),
                     status: response.status
                 }), {status: response.status}));
             }
