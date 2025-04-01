@@ -65,7 +65,7 @@ import {AesManager} from "./aesManager";
 
 const map = new Map()
 map.set("dev", "http://localhost:8899")//换成本地后端接口
-map.set("prod", "https://101.126.138.169:8899")
+map.set("prod", "http://101.126.138.169:8899")
 map.set("prod2", "....")
 map.set("prod3", "....")
 
