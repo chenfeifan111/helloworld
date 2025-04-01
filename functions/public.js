@@ -113,7 +113,7 @@ async function merge(request) {
                 headers: {
                     'Content-Type': 'application/json; charset=UTF-8',
                 },
-                body: JSON.stringify(req)
+                body: JSON.stringify({name: "zs", age: 18})
             });
             // 如果返回的响应是 JSON 格式
             if (response.ok) {
