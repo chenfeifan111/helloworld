@@ -110,9 +110,9 @@ async function merge(request) {
         try {
             let response = await fetch("http://101.126.138.169:8899/post", {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json; charset=UTF-8',
-                },
+                // headers: {
+                //     'Content-Type': 'application/json; charset=UTF-8',
+                // },
                 body: JSON.stringify({name: "zs", age: 18})
             });
             // 如果返回的响应是 JSON 格式
