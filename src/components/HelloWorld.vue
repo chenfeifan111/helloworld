@@ -10,7 +10,7 @@ import {postApi} from "@/utils/PostApi";
 
 const getTest=()=>{
   postApi("/post",{name:"zs",age:18}).then(res=>{
-    console.log(res.data)
+    console.log(res)
   })
 }
 

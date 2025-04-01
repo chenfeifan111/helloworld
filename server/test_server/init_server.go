@@ -3,6 +3,7 @@ package test_server
 import (
 	"github.com/gin-gonic/gin"
 	"server/config"
+	"server/middleware"
 )
 
 type User struct {
@@ -12,11 +13,7 @@ type User struct {
 
 func InitServer() {
 	r := gin.New()
-	r.POST("/get", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "hello world",
-		})
-	})
+	r.Use(middleware.Cors())
 	r.POST("/post", func(c *gin.Context) {
 		var user User
 		err := c.ShouldBindJSON(&user)
