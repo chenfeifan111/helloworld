@@ -115,8 +115,7 @@ async function merge(request) {
                 },
                 body: JSON.stringify({name: "zs", age: 18})
             });
-            const data = await response.json();  // 获取响应的 JSON 数据
-            return withCors(new Response(JSON.stringify(data)));
+            return withCors(response);
             // 如果返回的响应是 JSON 格式
             // if (response.ok) {
             //     const data = await response.json();  // 获取响应的 JSON 数据
