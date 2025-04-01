@@ -61,7 +61,7 @@
 //     }
 // }
 
-import {AesManager} from "./aesManager";
+
 
 const map = new Map()
 map.set("dev", "http://localhost:8899")//换成本地后端接口
@@ -100,36 +100,33 @@ async function merge(request) {
             return new Response(JSON.stringify({err: "Missing environment:" + body.env}));
         }
         const url = baseUrl + body.path//请求路径
-        const reqData = body.data//实际要请求的数据
-        const encrypted = AesManager.encrypt(reqData);
-        const req = {postData: encrypted}
+        const req = body.data//实际要请求的数据
         // if (1==1){
         //     return new Response(JSON.stringify(req));//测试加密结果
         //     return withCors(new Response(JSON.stringify({env:body.env})));
         // }
-        return withCors(new Response(JSON.stringify({url:url})));
-        // try {
-        //     const response = await fetch(url, {
-        //         method: 'POST',
-        //         headers: {
-        //             'Content-Type': 'application/json; charset=UTF-8',
-        //         },
-        //         body: JSON.stringify(req)
-        //     });
-        //     // 如果返回的响应是 JSON 格式
-        //     if (response.ok) {
-        //         const data = await response.json();  // 获取响应的 JSON 数据
-        //         return withCors(new Response(JSON.stringify(data)));
-        //     } else {
-        //         return withCors(new Response(JSON.stringify({
-        //             err: "Server returned an error",
-        //             status: response.status
-        //         }), {status: response.status}));
-        //     }
-        // }
-        // catch (error) {
-        //     return withCors(new Response(JSON.stringify({err: "Request failed", message: error.message}), {status: 500}));
-        // }
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json; charset=UTF-8',
+                },
+                body: JSON.stringify(req)
+            });
+            // 如果返回的响应是 JSON 格式
+            if (response.ok) {
+                const data = await response.json();  // 获取响应的 JSON 数据
+                return withCors(new Response(JSON.stringify(data)));
+            } else {
+                return withCors(new Response(JSON.stringify({
+                    err: "Server returned an error",
+                    status: response.status
+                }), {status: response.status}));
+            }
+        }
+        catch (error) {
+            return withCors(new Response(JSON.stringify({err: "Request failed", message: error.message}), {status: 500}));
+        }
     }
 }
 
