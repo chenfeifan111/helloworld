@@ -115,16 +115,18 @@ async function merge(request) {
                 },
                 body: JSON.stringify({name: "zs", age: 18})
             });
+            const data = await response.json();  // 获取响应的 JSON 数据
+            return withCors(new Response(JSON.stringify(data)));
             // 如果返回的响应是 JSON 格式
-            if (response.ok) {
-                const data = await response.json();  // 获取响应的 JSON 数据
-                return withCors(new Response(JSON.stringify(data)));
-            } else {
-                return withCors(new Response(JSON.stringify({
-                    err: "Server returned an error",
-                    status: response.status
-                }), {status: response.status}));
-            }
+            // if (response.ok) {
+            //     const data = await response.json();  // 获取响应的 JSON 数据
+            //     return withCors(new Response(JSON.stringify(data)));
+            // } else {
+            //     return withCors(new Response(JSON.stringify({
+            //         err: "Server returned an error",
+            //         status: response.status
+            //     }), {status: response.status}));
+            // }
         }
         catch (error) {
             return withCors(new Response(JSON.stringify({err: "Request failed", message: error.message}), {status: 500}));
