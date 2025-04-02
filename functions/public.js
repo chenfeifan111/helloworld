@@ -61,11 +61,106 @@
 //     }
 // }
 
-import {AesManager} from "./aesManager";
+
+
+
+
+
+
+
+// import {AesManager} from "./aesManager";
+//
+// const map = new Map()
+// map.set("dev", "http://localhost:8899")//换成本地后端接口
+// map.set("prod", "https://prepublish-api.tongitspinoy.com")//注意一定要使用https
+//
+// //本地
+// export default {
+//     async fetch(request, env, ctx) {
+//         return merge(request)
+//     },
+// };
+
+// //云端
+// export async function onRequest(context) {
+//     return merge(context.request)
+// }
+//
+// async function merge(request) {
+//     if (request.method === "OPTIONS") {
+//         return new Response(null, {
+//             headers: {
+//                 'Access-Control-Allow-Origin': '*',
+//                 'Access-Control-Allow-Methods': 'POST, OPTIONS',
+//                 'Access-Control-Allow-Headers': 'Content-Type',
+//                 'Access-Control-Max-Age': '86400', // 预检结果缓存24小时
+//             },
+//             status: 204
+//         });
+//     }
+//     // const body = await request.json()
+//     // return withCors(new Response(JSON.stringify(body.data)));
+//     if (request.method === "POST") {
+//         const body = await request.json()
+//         const baseUrl = map.get(body.env)//环境
+//         if (baseUrl == null) {//||body.path===""||body.data===null
+//             return new Response(JSON.stringify({err: "Missing environment:" + body.env}));
+//         }
+//         const url = baseUrl + body.path//请求路径
+//         const reqData = body.data//实际要请求的数据
+//         const encrypted = AesManager.encrypt(reqData);
+//         const req = {postData: encrypted}
+//         // const req = body.data//实际要请求的数据
+//         // if (1==1){
+//         //     return new Response(JSON.stringify(req));//测试加密结果
+//         //     return withCors(new Response(JSON.stringify({env:body.env})));
+//         // }
+//         try {
+//             // let response = await fetch(url, {
+//             let response = await fetch("https://prepublish-api.tongitspinoy.com/web_client/shareMgr/checkCustomerLink", {
+//                 method: 'POST',
+//                 headers: {
+//                     'Content-Type': 'application/json; charset=UTF-8',
+//                 },
+//                 body: JSON.stringify(req)
+//             });
+//             // 如果返回的响应是 JSON 格式
+//             if (response.ok) {
+//                 const data = await response.json();  // 获取响应的 JSON 数据
+//                 return withCors(new Response(JSON.stringify(data)));
+//             } else {
+//                 return withCors(new Response(JSON.stringify({
+//                     err: response.text(),
+//                     status: response.status
+//                 }), {status: response.status}));
+//             }
+//         }
+//         catch (error) {
+//             return new Response(JSON.stringify({err: "Request failed", message: error.message}), {status: 500});
+//         }
+//     }
+// }
+//
+//
+// function withCors(response) {
+//     response.headers.set('Access-Control-Allow-Origin', '*');
+//     response.headers.set('Access-Control-Allow-Methods', 'POST, OPTIONS');
+//     response.headers.set('Access-Control-Allow-Headers', 'Content-Type');
+//     return response;
+// }
+
+
+
+
+
+
+
+
+
 
 const map = new Map()
 map.set("dev", "http://localhost:8899")//换成本地后端接口
-map.set("prod", "https://prepublish-api.tongitspinoy.com")//注意一定要使用https
+map.set("prod", "/")//注意一定要使用https
 
 //本地
 export default {
@@ -99,34 +194,28 @@ async function merge(request) {
         if (baseUrl == null) {//||body.path===""||body.data===null
             return new Response(JSON.stringify({err: "Missing environment:" + body.env}));
         }
-        const url = baseUrl + body.path//请求路径
         const reqData = body.data//实际要请求的数据
-        const encrypted = AesManager.encrypt(reqData);
-        const req = {postData: encrypted}
-        // const req = body.data//实际要请求的数据
-        // if (1==1){
-        //     return new Response(JSON.stringify(req));//测试加密结果
-        //     return withCors(new Response(JSON.stringify({env:body.env})));
-        // }
+        const path=body.path
         try {
-            // let response = await fetch(url, {
-            let response = await fetch("https://prepublish-api.tongitspinoy.com/web_client/shareMgr/checkCustomerLink", {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json; charset=UTF-8',
-                },
-                body: JSON.stringify(req)
-            });
-            // 如果返回的响应是 JSON 格式
-            if (response.ok) {
-                const data = await response.json();  // 获取响应的 JSON 数据
-                return withCors(new Response(JSON.stringify(data)));
-            } else {
-                return withCors(new Response(JSON.stringify({
-                    err: response.text(),
-                    status: response.status
-                }), {status: response.status}));
-            }
+            return withCors(new Response(JSON.stringify(reqData)))
+            // // let response = await fetch(url, {
+            // let response = await fetch("https://prepublish-api.tongitspinoy.com/web_client/shareMgr/checkCustomerLink", {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/json; charset=UTF-8',
+            //     },
+            //     body: JSON.stringify(req)
+            // });
+            // // 如果返回的响应是 JSON 格式
+            // if (response.ok) {
+            //     const data = await response.json();  // 获取响应的 JSON 数据
+            //     return withCors(new Response(JSON.stringify(data)));
+            // } else {
+            //     return withCors(new Response(JSON.stringify({
+            //         err: response.text(),
+            //         status: response.status
+            //     }), {status: response.status}));
+            // }
         }
         catch (error) {
             return new Response(JSON.stringify({err: "Request failed", message: error.message}), {status: 500});
@@ -141,7 +230,6 @@ function withCors(response) {
     response.headers.set('Access-Control-Allow-Headers', 'Content-Type');
     return response;
 }
-
 
 
 

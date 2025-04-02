@@ -17,3 +17,7 @@ main = "functions/public.js"  # 生产环境下 Worker 脚本的入口
 
 [env.dev]
 main = "functions/public.js"  # 开发环境 Worker 脚本的入口
+
+[[kv_namespaces]]
+binding = "aaa"
+id = "be8bf22f8411405198e2239ee016571e"
