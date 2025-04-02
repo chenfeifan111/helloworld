@@ -197,7 +197,19 @@ async function merge(request) {
         const reqData = body.data//实际要请求的数据
         const path=body.path
         try {
-            return withCors(new Response(JSON.stringify(reqData)))
+            if (path==="/set"){
+                const { aaa } = /** @type {Env} */ (event.env);
+                await aaa.put(reqData.key,reqData.value)
+                return withCors(new Response(JSON.stringify(reqData)))
+            }else if (path==="/get"){
+                const { aaa } = /** @type {Env} */ (event.env);
+                var newVar = aaa.get(reqData.key);
+                return withCors(new Response(JSON.stringify({value:newVar})))
+            }
+
+
+
+
             // // let response = await fetch(url, {
             // let response = await fetch("https://prepublish-api.tongitspinoy.com/web_client/shareMgr/checkCustomerLink", {
             //     method: 'POST',
