@@ -67,7 +67,7 @@
 
 
 
-
+//转发
 // import {AesManager} from "./aesManager";
 //
 // const map = new Map()
@@ -174,6 +174,10 @@ export async function onRequest(context) {
     return merge(context.request)
 }
 
+/**
+ * @typedef {Object} Env
+ * @property {KVNamespace} aaa
+ */
 async function merge(request) {
     if (request.method === "OPTIONS") {
         return new Response(null, {
