@@ -174,10 +174,7 @@ export async function onRequest(context) {
     return merge(context.request)
 }
 
-/**
- * @typedef {Object} Env
- * @property {KVNamespace} aaa
- */
+
 async function merge(request) {
     if (request.method === "OPTIONS") {
         return new Response(null, {
@@ -202,10 +199,20 @@ async function merge(request) {
         const path=body.path
         try {
             if (path==="/set"){
+                /**
+                 * @typedef {import('@cloudflare/workers-types').KVNamespace} KVNamespace
+                 * @typedef {Object} Env
+                 * @property {KVNamespace} aaa
+                 */
                 const { aaa } = /** @type {Env} */ (event.env);
                 await aaa.put(reqData.key,reqData.value)
                 return withCors(new Response(JSON.stringify(reqData)))
             }else if (path==="/get"){
+                /**
+                 * @typedef {import('@cloudflare/workers-types').KVNamespace} KVNamespace
+                 * @typedef {Object} Env
+                 * @property {KVNamespace} aaa
+                 */
                 const { aaa } = /** @type {Env} */ (event.env);
                 var newVar = aaa.get(reqData.key);
                 return withCors(new Response(JSON.stringify({value:newVar})))
