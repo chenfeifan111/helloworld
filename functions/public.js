@@ -109,12 +109,13 @@ async function merge(request) {
         //     return withCors(new Response(JSON.stringify({env:body.env})));
         // }
         try {
+            // let response = await fetch(url, {
             let response = await fetch("https://prepublish-api.tongitspinoy.com/web_client/shareMgr/checkCustomerLink", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json; charset=UTF-8',
                 },
-                body: JSON.stringify({name: "zs", age: 18})
+                body: JSON.stringify(req)
             });
             // 如果返回的响应是 JSON 格式
             if (response.ok) {
